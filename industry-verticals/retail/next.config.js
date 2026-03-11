@@ -47,6 +47,11 @@ const nextConfig = {
         hostname: 'placehold.co',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'dstr2.sitecoresandbox.cloud',
+        port: '',
+      },
     ],
   },
 

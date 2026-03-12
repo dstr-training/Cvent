@@ -37,7 +37,6 @@ const HeroBannerCommon = ({
   const { page } = useSitecore();
   const { styles, RenderingIdentifier: id } = params;
   const isPageEditing = page.mode.isEditing;
-  const hideGradientOverlay = styles?.includes(HeroBannerStyles.HideGradientOverlay);
 
   if (!fields) {
     return isPageEditing ? (
@@ -73,10 +72,18 @@ const HeroBannerCommon = ({
             />
           </>
         )}
-        {/* Gradient overlay to fade image/video at bottom */}
-        {!hideGradientOverlay && (
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent from-85% to-white"></div>
-        )}
+      </div>
+
+      {/* Wave divider - single smooth curve: high left, dips center, rises right */}
+      <div className="absolute right-0 bottom-0 left-0 z-10 w-full">
+        <svg
+          className="block h-20 w-full md:h-28 lg:h-32"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <path d="M0,0 C360,80 1080,80 1440,0 L1440,120 L0,120 Z" fill="white" />
+        </svg>
       </div>
 
       {children}
@@ -204,7 +211,7 @@ export const CventStyle = ({ params, fields }: HeroBannerProps) => {
 
   return (
     <div
-      className={`component hero-banner cvent-style bg-background relative ${params.styles}`}
+      className={`component hero-banner cvent-style bg-background relative overflow-hidden ${params.styles}`}
       id={id}
     >
       <div className="container mx-auto px-4 py-12 lg:py-16">
@@ -255,6 +262,18 @@ export const CventStyle = ({ params, fields }: HeroBannerProps) => {
             )}
           </div>
         </div>
+      </div>
+
+      {/* Wave divider - single smooth curve: high left, dips center, rises right */}
+      <div className="absolute right-0 bottom-0 left-0 z-10 w-full">
+        <svg
+          className="block h-20 w-full md:h-28 lg:h-32"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <path d="M0,0 C360,80 1080,80 1440,0 L1440,120 L0,120 Z" fill="white" />
+        </svg>
       </div>
     </div>
   );

@@ -1,6 +1,10 @@
 import { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { Default as HeroBanner, TopContent } from '../components/hero-banner/HeroBanner';
+import {
+  Default as HeroBanner,
+  TopContent,
+  CventStyle as HeroBannerCventStyle,
+} from '../components/hero-banner/HeroBanner';
 import { CommonParams, CommonRendering } from './common/commonData';
 import { renderStorybookPlaceholder } from './helpers/renderStorybookPlaceholder';
 import { createLinkField, createRichTextField, createTextField } from './helpers/createFields';
@@ -139,5 +143,32 @@ export const WithTopContent: Story = {
     const fields = createHeroBannerFields();
 
     return <TopContent params={params} rendering={baseRendering} fields={fields} />;
+  },
+};
+
+const createCventStyleFields = () => ({
+  Image: {
+    value: {
+      src: 'https://placehold.co/800x600/f0f4f8/1e3a5f?text=Product+Screenshot',
+      alt: 'Event management platform',
+      width: 800,
+      height: 600,
+    },
+  },
+  Video: { value: {} },
+  Title: createTextField('A better way to manage your events', 1),
+  Description: {
+    value: `<div class="ck-content"><p>AI-powered event management that helps you:</p><ul><li>Find hotels and venues</li><li>Plan and promote your event</li><li>Engage your attendees</li><li>Capture leads and track ROI</li></ul></div>`,
+  },
+  CtaLink: createLinkField('Explore the platform'),
+  SecondaryCtaLink: createLinkField('Request a demo'),
+});
+
+export const CventStyle: Story = {
+  render: () => {
+    const params = { ...baseParams };
+    const fields = createCventStyleFields();
+
+    return <HeroBannerCventStyle params={params} rendering={baseRendering} fields={fields} />;
   },
 };
